@@ -1,0 +1,38 @@
+@media screen and (min-width: 1000px) {
+    body{
+        background-color: blue;
+    }
+  .titre_p{
+      margin-bottom: -50px;
+  }
+  .nb_objet{
+      margin-left: 10px;
+      margin-right: 10px;
+      display: flex;
+      gap: 10px;
+      max-height: 1200px;
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 30px;
+      padding-top: 0px;
+
+  }
+  .bloc_ours{
+      width: 500px;
+      border-radius: 40px 40px 0 0;
+      
+  }
+  .foot{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 20px;
+      padding-top: 10px;
+      font-weight: 900;
+  }
+  .contact{
+    margin-top: -20px;
+}
+}
