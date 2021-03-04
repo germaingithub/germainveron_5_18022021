@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/14d0bd0a6a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./dist/css/my_bootsrap.min.css">
+    <script src="test.js" defer ></script>
 </head>
 
 <body>
@@ -51,14 +52,13 @@
             <div class="card">
                 <div class="row">
 
-                    <img src="images/teddy_1.jpg" class="img-fluid col-6" alt="teddy_2">
+                    <img src="http://localhost:3000/images/teddy_1.jpg" id="image" class="img-fluid col-6" alt="teddy_2">
 
                     <div class="col-6">
-                        <h3>Norbert </h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam labore
-                            cupiditate quam voluptates nostrum, in adipisci ad aperiam eveniet officiis
-                            atque magni. Fugit voluptatem nam animi quia saepe est vero?</p>
-                        <strong>29€</strong>
+                        <h3 id="name"> nom ours </h3>
+                        <p id="descri" >detail ours</p>
+                        <div id="prix"> tarif </div> 
+                        
                     </div>
                 </div>
                 <form>
@@ -66,10 +66,12 @@
     <div class="col-auto my-1">
       <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
       <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        <option selected>Choose...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option selected>Couleurs</option>
+        <option id="c1">One</option>
+        <option id="c2">Two</option>
+        <option id="c3">Three</option>
+        <option id="c4">Four</option>
+
       </select>
     </div>
     <div class="col-auto my-1">
