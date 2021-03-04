@@ -46,4 +46,45 @@ const getPrix = () => {
 getPrix();
 
   //formulaires
-  
+  function userInputChecker(userInputFirstName) {
+	if(! userInputFirstName.match(/^([a-zA-Z ]+)$/))
+    	return(0);
+    else
+    	return(1);
+}
+
+ function userInputChecker(userInputLastName) {
+	if(! userInputLastName.match(/^([a-zA-Z ]+)$/))
+    	return(0);
+    else
+    	return(1);
+}
+
+ function userInputChecker(userInputEmail) {
+	if(! userInputEmail.match(/^([a-zA-Z @]+)$/))
+    	return(0);
+    else
+    	return(1);
+}
+
+ function userInputChecker(userInputAdress) {
+	if(! userInputAdress.match(/^([a-zA-Z 1-9]+)$/))
+    	return(0);
+    else
+    	return(1);
+}
+
+ function userInputChecker(userInputZipCode) {
+	if(! userInputZipCode.match(/^([1-9]+)$/))
+    	return(0);
+    else
+    	return(1);
+}
+
+
+ function userInputChecker(userInputTown) {
+	if(! userInputTown.match(/^([a-zA-Z ]+)$/))
+    	return(0);
+    else
+    	return(1);
+}
