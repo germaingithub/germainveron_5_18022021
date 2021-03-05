@@ -15,10 +15,10 @@ const getPrix = () => {
       prix.innerHTML = data.price/100;
     });
     
-    fetch('http://localhost:3000/images/teddy_1.jpg')
-    .then((res) => {
-      document.getElementById('image').innerHTML = 
-        `<img src=${res.url} />`
+    fetch('http://localhost:3000/api/teddies/5be9c8541c9d440000665243/500/600')
+    .then((res) => res.json())
+    .then((data) =>{
+      `<img src=${res.image.url} />`
     })
     
     fetch("http://localhost:3000/api/teddies/5be9c8541c9d440000665243")
@@ -31,13 +31,20 @@ const getPrix = () => {
     .then((data) => {
       descri.innerHTML = data.description;
     });
+    
 
     //couleurs
      fetch("http://localhost:3000/api/teddies/5be9c8541c9d440000665243")
     .then((res) => res.json())
     .then((data) => {
       c1.innerHTML = data.colors;
-      
+    
+    //  var number = 0;
+    
+    //while (number < 4){
+      //console.log('data');
+      //number =number + 1;
+    //}
     });
 
 
