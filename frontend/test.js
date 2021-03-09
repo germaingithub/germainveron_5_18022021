@@ -38,7 +38,7 @@ const getPrix = () => {
     .then((res) => res.json())
     .then((data) => {
       c1.innerHTML = data.colors;
-    
+     `repeat(${product.colors.length}, 1fr)`
     //  var number = 0;
     
     //while (number < 4){

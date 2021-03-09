@@ -2,10 +2,12 @@ fetch("http://localhost:3000/api/teddies")
     .then(response => response.json())
     .then(teddies => {
         const teddiesElement = document.querySelector('#teddies')
-        {
-            console.log(teddy)
+        for (let teddy of teddies) {
+        console.log(teddy)
+        
+           
 
-            teddiesElement.innerHTML += `<div id="norbert" class="card col-6-lg bg-light gap-4 p-3 mb-3 col-lg-4 ">
+            teddiesElement.innerHTML += `<div id="" class="card col-6-lg bg-light gap-4 p-3 mb-3 col-lg-4 ">
                     <div class="bloc_ours ">
                     
                         <a href="#" class="text-decoration-none text-dark "></a>

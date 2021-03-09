@@ -1,24 +1,33 @@
-const prix = document.getElementById("prix");
-const name = document.getElementById("name");
-const descri = document.getElementById("descri");
-const image = document.getElementById("image");
 
-fetch("http://localhost:3000/api/teddies/${teddy._id}")
+;
+async () => {
+    const teddiesId = getTeddiestId()
+    const teddiesData = await getTeddiesData(teddiesId)
+}
+
+function getTeddiesId() {
+    return new URL(window.location.href).searchParams.get('_id')
+}
+
+fetch("http://localhost:3000/api/teddies?${teddy._id}")
     .then(response => response.json())
     .then(teddies => {
- 
- const teddiesElement = document.querySelector('#descrip')
+        const teddiesElement = document.querySelector('#descrip')
         for (let teddy of teddies) {
-console.log(teddy)
-            teddies.Element.innerHTML += `<div class="card">
+        console.log(teddy)
+        
+           
+
+            teddiesElement.innerHTML += 
+                   `<div class="card">
+        
         <div class="row">
 
-          <img src="${teddy.imageUrl}" width="300" height="250" />
-
+          <img src="${teddy.imageUrl}" id="image" class="img-fluid col-6" alt="teddy_2" width="300" height="250">
           <div class="col-6">
             <h3 id="${teddy.name}"> nom ours </h3>
             <p id="${teddy.description}">detail ours</p>
-            <div id="prix"> ${teddy.price/100} </div>
+            <div id="${teddy.price/100}.00€"> tarif </div>
 
           </div>
         </div>
@@ -40,4 +49,5 @@ console.log(teddy)
           </div>
         </form>`
         }
-  })
+
+    })

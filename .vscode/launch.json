@@ -5,12 +5,22 @@
 
     "version": "0.2.0",
     "configurations": [
+
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:3000/api/teddies/",
+            "webRoot": "${workspaceFolder}"
+        },
+
+
         {
             "name": "Launch localhost",
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "url": "http://localhost:3000/api/teddies/",
+            "url": "http://localhost:3001/api/teddies/",
             "webRoot": "${workspaceFolder}"
         }
     ]
