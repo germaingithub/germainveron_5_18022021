@@ -17,7 +17,7 @@ fetch("http://localhost:3000/api/teddies")
                             <div class="descri">
                                 <div class="description">
                     </div>
-                                   <h3> <a href="produits.html?${teddy._id}"> ${teddy.name}</a> </h3>
+                                   <h3> <a <a href="produits.html?given_id=${teddy._id}"> ${teddy.name}</a> </h3>
                                     <p>${teddy.description}</p>
 
                                 </div>
@@ -26,6 +26,7 @@ fetch("http://localhost:3000/api/teddies")
                                 </div>
                               
                             </div>
+                            
                         </a>
                     </div>
                 </div>`
