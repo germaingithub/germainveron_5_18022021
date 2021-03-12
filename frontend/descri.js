@@ -1,6 +1,29 @@
 const urlParams = new URLSearchParams(window.location.search) 
 const productId = urlParams.get("given_id")
 const productData =  getProductData(productId)
+
+let selectColor = async () =>{
+
+     let color = [] 
+     const appHtml = document.querySelector('#colors')
+
+     try {
+         color = await getcolors()
+         for (let _color of colors){
+             appHtml.innerHTML += `
+             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>colors</option>
+                <option value="${productData.color}">One</option>
+       
+
+              </select>`
+         }
+     } catch (error){
+         console.error(error)
+     }
+    }
+console.log()
+
 console.log(productData)
 
 function getProductData(productId){
@@ -9,7 +32,7 @@ function getProductData(productId){
     .then(productData => {
         const teddiesElement = document.querySelector('#descrip')
          {
-        console.log(productData.price)
+       
         
            
 
@@ -27,27 +50,36 @@ function getProductData(productId){
 
           </div>
         </div>
-        <form>
-          <div class="form-row align-items-center">
-            <div class="col-auto my-1">
-              <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
-              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Couleurs</option>
-                <option id="c1">One</option>
-                <option id="c2">Two</option>
-                <option id="c3">Three</option>
-                <option id="c4">Four</option>
+        `
+         }
+      
+        
 
-              </select>
-            </div>
+}
+    )}
+       // let selectColor = document.querySelector('colors');
 
-<div class="row">
-        <div class="col-7 pb-3"></div>
-        <button type="button" class="btn btn-primary btn-lg col-4 align-self-end mb-3"
-          onclick="buttonClickGET()">Ajouter au panier</button>
-      </div>
-          </div>
-        </form>`
-        }
+        //data.colors.forEach(colors => {
+          //      let option = document.createElement("option");
+           //     selectColor.appendChild(option);
+            //    option.setAttribute("value", "diff colors");
+            //    option.textContent = colors;
+          //  });
 
-    })}
+
+
+    //  document.getElementById('addtobasket').onclick = (event) => {
+   // event.preventDefault()
+   // Panier.addProduct(product)
+  //  redirectToShoppingCart(productData.name)
+ // }
+
+ // element.addEventListener('click', function(e) { //ecouter un click
+//    e.preventDefault(); 
+//});
+
+
+
+//mySelect.addEventListener('change', function(e) { //ecouter un hcangement
+ //   result.innerHTML = e.target.value; 
+//}); 
