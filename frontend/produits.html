@@ -17,13 +17,12 @@
   <script src="https://kit.fontawesome.com/14d0bd0a6a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./dist/css/my_bootsrap.min.css">
   <script src="descri.js" defer></script>
+  <script src="storage.js" defer></script>
 </head>
 
 <body>
   <div class="container ">
     <header>
-
-
       <nav class="navbar navbar-expand-lg navbar-light  bg-primary ">
         <a href="index.html"> <img class="logo flex flex-col" src="images/logo.png" height="90" alt="Logo Orinoco"> </a>
         <div class="container-fluid">
@@ -49,25 +48,27 @@
     </header>
     <section>
       <div id="descrip"></div>
-      
-        <form>
-          <div class="form-row align-items-center">
-            <div class="col-auto my-1">
-              <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
-              <select id="colors" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                
 
-              </select>
-            </div>
+      <form>
+        <div class="form-row align-items-center">
+          <div class="col-auto my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+            <select id="colors" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+
+
+            </select>
           </div>
-      
+        </div>
+
       </form>
       <div class="row">
         <div class="col-7 pb-3"></div>
         <button id="addtobasket" type="button" class="btn btn-primary btn-lg col-4 align-self-end mb-3"
-          onclick="buttonClickGET()">Ajouter au panier</button>
+          >Ajouter au panier
+        </button>
       </div>
 
+
+    </section>
   </div>
-  </section>
 </body>

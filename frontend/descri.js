@@ -15,7 +15,7 @@ function getProductData(productId) {
          
       teddiesElement.innerHTML += 
                 `
-                    <div class="card">  
+                    <div id="cart" class="card">  
                       <div class="row">
                         <img src="${productData.imageUrl}" id="image" class="img-fluid col-6" alt="teddy_2" width="300" height="250">
                           <div class="col-6">
