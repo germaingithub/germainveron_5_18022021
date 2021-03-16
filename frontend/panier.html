@@ -51,20 +51,30 @@
 
 
 
-  <section >
-    <div class="row bg-primary mt-5 panier-client">
+  <section class=" bg-primary row mt-5 px-5">
+    <div class="row  mt-5 panierClient">
       <h2>Votre panier</h2>
       <p id="panier"></p>
+      <p id="paniervide"></p>
 
+      
       <div class="h-500"></div>
     </div>
-  </section>
 
 
-  <section class=" row mt-5 px-5">
-    <div class="col-8 bg-primary rounded" >
+
+ 
+    <table class="col-8 border-collapse bg-primary rounded" >
         <h3>Récapulatif de votre commande</h3>
-    </div>
+         <thead>
+              <tr class="border bg-white">
+                <th class="py-2">Produit</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+    </table>
       
     <form class="col-4 px-5" > 
 
@@ -116,7 +126,7 @@
 
         </div>
 
-        <button id="validation" class="btn btn-primary" type="submit">Valider votre commande</button>
+        <button id="validation" class="btn bg-white btn-primary" type="submit">Valider votre commande</button>
       </form>
 
 
