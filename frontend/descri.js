@@ -41,17 +41,38 @@ function getProductData(productId) {
             <option value="${color}">${color}</option>
           `
       } 
-      function ajoutPanier(){
-    var btn = document.getElementByID("#addToBasket");
-    btn.addEventListener("click", async function(){
-      alert = "article ajouté"
-        cart.push();
-        localStorage.setitem('panier', JSON.stringify(panier));
-        alert("Ajouté au panier")
-        location.reload();
-    });
+//ajoutpanier
+      const blocInfoProd = [productData.name , productData.colors , productData.price];
+      const saveTolocalStorage = () => {
+      localStorage.setItem ('click', blocInfoProd)
+
+      
 };
-ajoutPanier();
-    })
+
+      function ajouterAuPanier(){ // ajout au local storage + sauvegarde + transfo en JSON + alert (objet bien ajouté)
+      const bouton = document.getElementById('addToBasket');
+        bouton.addEventListener("click", async function(){
+        saveTolocalStorage(productData);
+        localStorage.setItem("Prod", JSON.stringify(blocInfoProd));
+        alert("L'article a bien été ajouté à votre panier.")
+        ;
+
+      
+      const retrieved = JSON.parse(localStorage.getItem("Prod"));  //tranformation en tableau ligne par ligne
+
+        console.log(retrieved)
+    });
+
+};
+
+ ajouterAuPanier();
+
+
     
-}
+});
+
+
+    }
+    
+
+ 
