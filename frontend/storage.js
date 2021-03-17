@@ -1,24 +1,37 @@
- 
-const basket = () =>{
-    const retrieved = JSON.parse(localStorage.getItem("Prod"));
-    let contenu = document.getElementById('panier');
-    let nameStorage = localStorage.getItem('Prod');
+let nameStorage = localStorage.getItem('Prod');
+    
 
-    if (nameStorage == null) {
-        contenu.innerHTML = "votre panier est vide";
+
+    const panierPosition = document.querySelector("#panier") //selection ou je vais injecter le code
+
+    console.log(panierPosition)
+
+    //si panier vide
+    if(nameStorage === null){
+const panierVide =  ` 
+        <div class="container">
+            <div> Votre panier est vide </div>
+        </div>
+`;
+panierPosition.innerHTML = panierVide;
     }else{
-    contenu.innerHTML =  ` 
-      <tr class="border bg-white">
-                <th class="py-2"></th>
-                <th>${nameStorage}</th>
-                <th></th>
-                <th>Total</th>
+        //si pas vide afficher produit
+        let structurePanier = [];
+
+        for(k = 0; k < nameStorage.length; k++ ){
+           structurePanier = structurePanier +`
+        
+           <tr class="border bg-white">
+                <th ${nameStorage.name} class="py-2"> teddy 1 </th>
+                <th id="qte" >1</th>
+                <th ${nameStorage.price}</th>
+                <th>55€</th>
+                <th id="trash"><i class="fas fa-trash"></i></th>
               </tr>
-    `;
-    console.log()
+           `
+        }
+        if (k == nameStorage.length){
+            panierPosition.innerHTML = structurePanier;
+        }
+    console.log(structurePanier)
 }
-};
-
-
-basket();
-console.log(namestorage)

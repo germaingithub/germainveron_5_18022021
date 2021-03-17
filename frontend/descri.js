@@ -1,3 +1,4 @@
+"use scrict";
 const urlParams = new URLSearchParams(window.location.search) 
 const productId = urlParams.get("given_id")
 const productData =  getProductData(productId)
@@ -25,9 +26,7 @@ function getProductData(productId) {
                             <strong>${productData.price/100}.00€ id="priceP"</strong>
                           </div>                              
                       </div>
-                          <button id="addtobasket" type="button" class="btn btn-primary btn-lg col-4 align-self-end mb-3"
-                            >Ajouter au panier
-                          </button>
+                          
                     </div>
                 `
          
@@ -44,7 +43,7 @@ function getProductData(productId) {
 //ajoutpanier
       const blocInfoProd = [productData.name , productData.colors , productData.price];
       const saveTolocalStorage = () => {
-      localStorage.setItem ('click', blocInfoProd)
+      localStorage.setItem ('Prod', blocInfoProd)
 
       
 };
@@ -57,10 +56,7 @@ function getProductData(productId) {
         alert("L'article a bien été ajouté à votre panier.")
         ;
 
-      
-      const retrieved = JSON.parse(localStorage.getItem("Prod"));  //tranformation en tableau ligne par ligne
 
-        console.log(retrieved)
     });
 
 };
