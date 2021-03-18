@@ -18,12 +18,13 @@ function getProductData(productId) {
                 `
                     <div id="cart" class="card">  
                       <div class="row">
-                        <img src="${productData.imageUrl}" id="image" class="img-fluid col-6" alt="teddy_2" width="300" height="250">
+                        <img src="${productData.imageUrl}"  class="img-fluid col-6" alt="teddy_2" width="300" height="250">
                           <div class="col-6">
-                            <h3> ${productData.name} id="nameP" </h3>
+                            <h3> ${productData.name}  </h3>
                             <p>${productData.description}</p>
                           <div class="prix">
-                            <strong>${productData.price/100}.00€ id="priceP"</strong>
+                            <strong>${productData.price/100}.00€ 
+                            </strong>
                           </div>                              
                       </div>
                           
@@ -41,12 +42,15 @@ function getProductData(productId) {
           `
       } 
 //ajoutpanier
-      const blocInfoProd = [productData.name , productData.colors , productData.price];
+
+      const blocInfoProd = [productData];
+      let nameStorage = JSON.parse(localStorage.getItem('Prod'));
       const saveTolocalStorage = () => {
       localStorage.setItem ('Prod', blocInfoProd)
-
-      
+  
 };
+
+
 
       function ajouterAuPanier(){ // ajout au local storage + sauvegarde + transfo en JSON + alert (objet bien ajouté)
       const bouton = document.getElementById('addToBasket');
@@ -64,11 +68,8 @@ function getProductData(productId) {
  ajouterAuPanier();
 
 
-    
+    console.log(productData)
 });
 
 
     }
-    
-
- 

@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg navbar-light  bg-primary ">
       <a href="index.html"> <img class="logo flex flex-col" src="images/logo.png" height="90" alt="Logo Orinoco"> </a>
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="index.html"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -34,17 +34,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="panier.html">Panier
                 <span id="articleNumber"></span></a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
-          </form>
+          
         </div>
       </div>
     </nav>
@@ -65,8 +62,9 @@
 
 
  
-    <table id="panier" class="col-8 border-collapse bg-primary rounded" >
+    <table id="panier"  class="col-8 border-collapse bg-primary rounded" >
         <h3>Récapulatif de votre commande</h3>
+       
          <thead>
               <tr class="border bg-white">
                 <th class="py-2">Produit</th>
@@ -75,12 +73,9 @@
                 <th>Total</th>
                 <th>Vider panier</th>
               </tr>
-              <tr class="border bg-white">
-                <th id="nomProduit" class="py-2"> teddy 1 </th>
-                <th id="qte" >1</th>
-                <th id="montant" >50€</th>
-                <th id="total">55€</th>
-                <th id="trash"><i class="fas fa-trash"></i></th>
+              <tr id="panier_plein" class="border bg-white">
+               
+              
               </tr>
             
             </thead>
