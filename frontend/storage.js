@@ -1,6 +1,6 @@
 
-let nameStorage = JSON.parse(localStorage.getItem('produit')); 
 
+let nameStorage = localStorage.getItem('produit'); 
     const panierPosition = document.querySelector("#panier") //selection ou je vais injecter le code
     const panier_plein = document.querySelector("#panier_plein")
 

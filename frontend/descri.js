@@ -1,4 +1,3 @@
-
 const urlParams = new URLSearchParams(window.location.search) 
 const productId = urlParams.get("given_id")
 const productData =  getProductData(productId)
@@ -50,34 +49,36 @@ function getProductData(productId) {
 
       // ajout au local storage + sauvegarde + transfo en JSON + alert (objet bien ajouté)
       
-        const bouton = document.getElementById('addToBasket');
+    const bouton = document.getElementById('addToBasket');
 
-        bouton.addEventListener('click', (event) => {
-        event.preventDefault();
-        alert('L\'article a bien été ajouté à votre panier.');
-
-      let blocInfoProd = {
-      nameProduct :  productData.name,
-      priceproduct :  productData.price,
-      quantity : 1,
-    };
-
-     let nameStorage = JSON.parse(localStorage.getItem('tout')); 
-
-        if (nameStorage === null) {
-          nameStorage = [];
-         
-        } 
-      
-          nameStorage.push();
-          localStorage.setItem("tout",JSON.stringify(blocInfoProd));
-      
+      bouton.addEventListener('click', (event) => {
         
+      let nameStorage = localStorage.getItem('produit'); 
+      let tedProduct = JSON.parse('nameStorage');
+
+      function addProduct() {
       
-      });
-         
-      
-       addTobasket();
+        if (nameStorage === null) {
+          tedProduct = [];
+          
+        } 
+
+          tedProduct.push({
+          nameProduct :  productData.name,
+          priceproduct :  productData.price,
+          quantity : 1,
+        });
+        
+    }
+    addProduct()
+          
+          localStorage.setItem("produit",JSON.stringify(tedProduct));
+          console.log('produit', tedProduct);
+          alert('L\'article a bien été ajouté à votre panier.');
+          event.preventDefault();
+
+      })
+    
 });
 
 
