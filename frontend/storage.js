@@ -1,6 +1,6 @@
 
 
-let nameStorage = localStorage.getItem('produit'); 
+let nameStorage = JSON.parse(localStorage.getItem('produit')); 
     const panierPosition = document.querySelector("#panier") //selection ou je vais injecter le code
     const panier_plein = document.querySelector("#panier_plein")
 
@@ -19,20 +19,18 @@ let nameStorage = localStorage.getItem('produit');
            panier_plein.innerHTML +=`
         
             <tr class="border bg-white">
-                <th ${nameStorage[i].name} class="py-2"> ${nameStorage[i].name} </th>
-                <th id="qte" >1</th>
-                <th>${nameStorage[i].price/100}.00€</th>
-                <th> </th>
+                <th ${nameStorage[i].nameProduct} class="py-2"> ${nameStorage[i].nameProduct} </th>
+                <th>${nameStorage[i].quantity} </th>
+                <th>${nameStorage[i].priceProduct}.00€ </th>
+                <th>${nameStorage[i].priceProduct}.00€ </th>
+                <th><th>
                 <th id="trash"><button <i class="fas fa-trash"></i></button></th>
             </tr>
               
            `      
         }
-     
+     console.log(nameStorage)
 }
 
-//bouton supprimer
-let btn_trash =document.querySelectorAll(".fas fa-trash");
 
-console.log(btn_trash)
 

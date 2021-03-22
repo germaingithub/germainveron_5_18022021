@@ -54,7 +54,7 @@ function getProductData(productId) {
       bouton.addEventListener('click', (event) => {
         
       let nameStorage = localStorage.getItem('produit'); 
-      let tedProduct = JSON.parse('nameStorage');
+      let tedProduct = JSON.parse(nameStorage);
 
       function addProduct() {
       
@@ -73,7 +73,7 @@ function getProductData(productId) {
     addProduct()
           
           localStorage.setItem("produit",JSON.stringify(tedProduct));
-          console.log('produit', tedProduct);
+         
           alert('L\'article a bien été ajouté à votre panier.');
           event.preventDefault();
 
