@@ -65,7 +65,7 @@ function getProductData(productId) {
 
           tedProduct.push({
           nameProduct :  productData.name,
-          priceproduct :  productData.price,
+          priceProduct :  productData.price,
           quantity : 1,
         });
         
