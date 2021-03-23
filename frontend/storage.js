@@ -74,3 +74,83 @@ const priceHtml = `
 <div class="py-5 col-12 bg-white"> Total de la commande: ${totalPriceCalcul}€ </div>
 `  
 panierPosition.insertAdjacentHTML("beforeend",priceHtml)
+
+const formHtml = () =>{
+    const positionForm = document.querySelector('#panier');
+
+    if(nameStorage === null || nameStorage== 0 ){
+        const panierVide =  ` 
+            <div class="container">
+                <div> Votre panier est vide </div>
+            </div>
+                            `;
+            panierPosition.innerHTML = panierVide;
+     }else{       
+    const structureHtml = ` <form class="col-4 px-5" > 
+
+      <form>
+        <div class="form-row">
+          <div class="col-md-10 mb-3">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control " id="prenom" name="prenom"  value="" required>
+            <div class="valid-feedback">
+              Parfait!
+            </div>
+          </div>
+          <div class="col-md-10 mb-3">
+            <label id="userInputLastName" for="validationServer02">Nom</label>
+            <input type="text" class="form-control " id="validationServer02" placeholder="" value="" required>
+            <div class="valid-feedback">
+              Super!
+            </div>
+          </div>
+          <div class="form-group col-md-10 mb-3">
+            <label id="userInputEmail"  for="exampleInputEmail1">Email </label>
+            <input type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="form-row ">
+          <div class="col-md-10 mb-3">
+            <label id="userInputAdress"  for="validationServer04">Adresse</label>
+            <input type="text" class="form-control " id="validationServer04" placeholder="" required>
+            <div class="invalid-feedback">
+              Please provide a valid state.
+            </div>
+            <div class="col-md mb-3">
+              <label id="userInputZipCode"  for="validationServer05">Code Postal</label>
+              <input type="text" class="form-control " id="validationServer05" placeholder="" required>
+              <div class="invalid-feedback">
+
+              </div>
+            </div>
+            <div class="col-md mb-3">
+              <label id="userInputTown" for="validationServer03">Ville</label>
+              <input type="text" class="form-control " id="validationServer03" placeholder="" required>
+              <div class="invalid-feedback">
+                Please provide a valid city.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <button id="validation" class="btn bg-white btn-primary" type="submit">Valider votre commande</button>
+      </form>
+      ` 
+      ;
+      positionForm.insertAdjacentHTML('afterend',structureHtml);}
+};
+      formHtml();
+
+
+      const btnSendForm = document.querySelector('#validation');
+      btnSendForm.addEventListener('click',(e)=>{
+          e.preventDefault();
+
+        localStorage.setItem('prenom', document.querySelector('#prenom'));
+       
+      })
+      
+          
