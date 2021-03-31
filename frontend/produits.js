@@ -11,10 +11,10 @@ function getProductData(productId) {
     .then(response => response.json())
     .then(productData => {
 
-      const teddiesElement = document.querySelector('#descrip')
+        const teddiesElement = document.querySelector('#descrip')
 
-      teddiesElement.innerHTML +=
-        `
+        teddiesElement.innerHTML +=
+          `
                     <div id="cart" class="card">  
                       <div class="row">
                         <img src="${productData.imageUrl}"  class="img-fluid col-6" alt="teddy_2" width="300" height="250">
@@ -31,61 +31,46 @@ function getProductData(productId) {
                 `
 
 
-      let colors = productData.colors
-      const selectElement = document.querySelector('#colors')
-      for (let color of colors) {
+        let colors = productData.colors
+        const selectElement = document.querySelector('#colors')
+        for (let color of colors) {
 
-        selectElement.innerHTML +=
-          `  
+          selectElement.innerHTML +=
+            `  
             <option value="${color}">${color}</option>
           `
-      }
-      //ajoutpanier
+        }
+        //ajoutpanier
 
-      // ajout au local storage + sauvegarde + transfo en JSON + alert (objet bien ajouté)
+        // ajout au local storage + sauvegarde + transfo en JSON + alert (objet bien ajouté)
 
-      const bouton = document.getElementById('addToBasket');
+        const bouton = document.getElementById('addToBasket');
 
-      bouton.addEventListener('click', (event) => {
+        bouton.addEventListener('click', (event) => {
 
-        let nameStorage = localStorage.getItem('produit');
-        let tedProduct = JSON.parse(nameStorage);
+          let nameStorage = localStorage.getItem('produit');
+          let tedProduct = JSON.parse(nameStorage);
 
-        function addProduct() {
+          function addProduct() {
+            if (nameStorage === null) {
+              tedProduct = [];
 
-          if (nameStorage === null) {
-            tedProduct = [];
-
-          } else {
-            const products = JSON.parse(localStorage.getItem('produit'))
-            const productAlreadySelected = products.filter(prod => prod.id === productData.id)
-            if (productAlreadySelected.length > 0) {
-              productAlreadySelected[0].quantity++
-            } else {
-              tedProduct.push({
-                id: productData._id,
-                nameProduct: productData.name,
-                priceProduct: productData.price,
-                quantity: 1,
-              });
             }
+            tedProduct.push({
+              id: productData._id,
+              nameProduct: productData.name,
+              priceProduct: productData.price,
+              quantity: 1,
+            });
+
           }
 
+          addProduct()
+
+          localStorage.setItem('produit', JSON.stringify(tedProduct));
+          alert('L\'article a bien été ajouté à votre panier.');
+          event.preventDefault();
+        })
 
 
-          console.log(productData._id)
-        }
-        addProduct()
-
-
-        localStorage.setItem("produit", JSON.stringify(tedProduct));
-
-        alert('L\'article a bien été ajouté à votre panier.');
-        event.preventDefault();
-
-      })
-     
-    });
-
-
-}
+      })};
