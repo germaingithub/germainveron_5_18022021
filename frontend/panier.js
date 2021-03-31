@@ -243,6 +243,7 @@ const zip = {
 
   } else {
     alert('Veuillez remplir le formulaires correctement');
+
   }
 const products =[]
 nameStorage.forEach(product =>{
