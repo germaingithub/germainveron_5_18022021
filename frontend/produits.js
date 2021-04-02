@@ -30,7 +30,7 @@ function getProductData(productId) {
       }
       console.log(selectElement.innerHTML)
       const buttonAddToLocalStorage = document.getElementById('addToBasket');
-      
+
       buttonAddToLocalStorage.addEventListener('click', (event) => {
         
         let nameStorage = localStorage.getItem('produit');
@@ -48,7 +48,7 @@ function getProductData(productId) {
           });
         }
         //addProductToLocalStorage()
-        addProductToLocalSrage()
+        addProductToLocalSrge()
         localStorage.setItem('produit', JSON.stringify(tedProduct));
         alert('L\'article a bien été ajouté à votre panier.');
         event.preventDefault();
