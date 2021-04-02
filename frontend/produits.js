@@ -30,38 +30,37 @@ function getProductData(productId) {
       }
       console.log(selectElement.innerHTML)
       const buttonAddToLocalStorage = document.getElementById('addToBasket');
-
       buttonAddToLocalStorage.addEventListener('click', (event) => {
         
-        let nameStorage = localStorage.getItem('produit');
-        let tedProduct = JSON.parse(nameStorage);
-        console.log(nameStorage)
-        function addProductToLocalStorage() {
-          if (nameStorage === null) {
-            tedProduct = [];
-          }
-          tedProduct.push({
-            id: productData._id,
-            nameProduct: productData.name,
-            priceProduct: productData.price,
-            quantity: 1,
-          });
+      let nameStorage = localStorage.getItem('produit');
+      let tedProduct = JSON.parse(nameStorage);
+      console.log(nameStorage)
+      function addProductToLocalStorage() {
+        if (nameStorage === null) {
+          tedProduct = [];
         }
-        //addProductToLocalStorage()
-        addProductToLocalSrge()
-        localStorage.setItem('produit', JSON.stringify(tedProduct));
-        alert('L\'article a bien été ajouté à votre panier.');
-        event.preventDefault();
+        tedProduct.push({
+          id: productData._id,
+          nameProduct: productData.name,
+          priceProduct: productData.price,
+          quantity: 1,
+        });
+      }
+        addProductToLocalStorage()
+        
+      localStorage.setItem('produit', JSON.stringify(tedProduct));
+      alert('L\'article a bien été ajouté à votre panier.');
+      event.preventDefault();
       })
       
     })
 }; 
 
 const addProductToLocalSrage = (product) => {
-  if (!localStorage.getItem('produit')) {
-    localStorage.setItem('produit', JSON.stringify([product]))
+  if (!localStorage.getItem('products')) {
+    localStorage.setItem('products', JSON.stringify([product]))
   } else {
-    const products = JSON.parse(localStorage.getItem('produit'))
+    const products = JSON.parse(localStorage.getItem('products'))
     const productAlreadySelected = products.filter(prod => prod.id === product.id)
 
     if (productAlreadySelected.length > 0) {
