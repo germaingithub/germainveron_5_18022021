@@ -62,8 +62,8 @@
 
 
 
- 
-    <table id="panier"  class="col-8 border-collapse bg-primary rounded" >
+    <div class="row" id="panier"  >
+    <table  class="col-7 border-collapse bg-primary rounded" >
         <h3>Récapulatif de votre commande</h3>
        
          <thead>
@@ -82,7 +82,47 @@
 
     </table>
       
-    
+    <form class="col-4 px-5 " id="form" > 
+     
+        <div class="form-row">
+          <div class="form-group col-md-10 mb-3">
+            <label for="firstname">Prénom </label>
+            <input type="text" class="form-control" id="firstname" placeholder="" value=""  required>  
+            <div id="prenommanquant" class="position-relative bg-info mt-1 rounded" ></div>
+          </div>
+          <div class="form-group col-md-10 mb-3">
+            <label id="userInputLastName" for="lastname">Nom</label> 
+            <input type="text" class="form-control " id="lastname" placeholder="" value="" required>
+            <div id="nommanquant" class="position-relative bg-info mt-1 rounded" ></div>
+          </div>
+          <div class="form-group col-md-10 mb-3">
+            <label id="userInputEmail"  for="email">Email </label>
+            <input type="email" class="form-control " id="email" aria-describedby="emailHelp" required>
+            <div id="emailmanquant" class="position-relative bg-info mt-1 rounded" ></div>
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="form-row ">
+          <div class="form-group col-md-10 mb-3">
+            <label id="userInputAdress"  for="address">Adresse</label>
+            <input type="text" class="form-control " id="address" placeholder="" required>
+            <div id="adressemanquante" class="position-relative bg-info mt-1 rounded" ></div>
+            <div class="form-group col-md mb-3">
+              <label id="userInputZipCode"  for="zipcode">Code Postal</label>
+              <input type="text" class="form-control " id="zipcode" placeholder="" required>
+              <div id="zipmanquant" class="position-relative bg-info mt-1 rounded">
+            </div>
+          </div>
+            <div class="form-group col-md mb-3">
+              <label id="userInputTown" for="city">Ville</label>
+              <input type="text" class="form-control " id="city" placeholder="" required>
+              <div id="villemanquante" class="position-relative bg-info mt-1 rounded">
+            </div>
+          </div>
+        </div>
+        <button id="validation" class="btn  btn-primary"  type="submit">Valider votre commande</button>
+    </form>
+  </div>
 
 
   </section>

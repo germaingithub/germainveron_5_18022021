@@ -6,7 +6,7 @@ function getProductData(productId) {
   return fetch(`http://localhost:3000/api/teddies/${productId}`)
     .then(response => response.json())
     .then(productData => {
-      console.log(productData)
+
       const teddiesElement = document.querySelector('#descrip')
       teddiesElement.innerHTML +=`
                     <div id="cart" class="card">  
@@ -20,21 +20,34 @@ function getProductData(productId) {
                       </div>
                     </div>
                 `
-      console.log(teddiesElement.innerHTML)        
+             
       let colors = productData.colors
       const selectElement = document.querySelector('#colors')
-      console.log(colors)
+  
       for (let color of colors) {
         selectElement.innerHTML += `  
             <option value="${color}">${color}</option>`
       }
-      console.log(selectElement.innerHTML)
+
+      const structureQuantite =`
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      `
+      const positionQuantite = document.querySelector('#selectQte');
+      positionQuantite.innerHTML = structureQuantite;
+      
+
       const buttonAddToLocalStorage = document.getElementById('addToBasket');
+
       buttonAddToLocalStorage.addEventListener('click', (event) => {
-        
+      const choixQte = positionQuantite.value;
+      console.log(choixQte)
       let nameStorage = localStorage.getItem('produit');
       let tedProduct = JSON.parse(nameStorage);
-      console.log(nameStorage)
+    
       function addProductToLocalStorage() {
         if (nameStorage === null) {
           tedProduct = [];
@@ -42,8 +55,8 @@ function getProductData(productId) {
         tedProduct.push({
           id: productData._id,
           nameProduct: productData.name,
-          priceProduct: productData.price,
-          quantity: 1,
+          priceProduct: (productData.price*choixQte),
+          quantity: choixQte,
         });
       }
         addProductToLocalStorage()

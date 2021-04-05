@@ -16,8 +16,8 @@ const panier_plein = document.querySelector("#panier_plein")
                 <div class="container">
                       <th ${nameStorage[i].nameProduct} class="py-2"> ${nameStorage[i].nameProduct} </th>
                       <th> ${nameStorage[i].quantity} </th>
-                      <th>${nameStorage[i].priceProduct/100}.00€ </th>
-                      <th>${nameStorage[i].priceProduct/100*nameStorage[i].quantity}.00€<th>        
+                      <th>${nameStorage[i].priceProduct/100/nameStorage[i].quantity}.00€ </th>
+                      <th>${nameStorage[i].priceProduct/100}.00€<th>        
                     <button class="btn_supprimer">supprimer </button>
                   </div>
             `
@@ -39,19 +39,20 @@ for (let j = 0; j < btn_trash.length; j++) {
 }
 let totalPrice = [];
   for (let m = 0; m < nameStorage.length; m++) {
-  let priceProductBasket = nameStorage[m].priceProduct / 100 * nameStorage[m].quantity;
+  let priceProductBasket = nameStorage[m].priceProduct / 100 ;
   totalPrice.push(priceProductBasket)
 }
 const reducer = (accumulator, currentValue) => accumulator + currentValue
 const totalPriceCalcul = totalPrice.reduce(reducer)
-
+console.log(totalPriceCalcul)
 const priceHtml = `  
-  <div class="py-5 col-12 bg-white"> Total de la commande: ${totalPriceCalcul}.00€ </div>
+  <div class="py-5 col-2 bg-white"> Total de la commande: ${totalPriceCalcul}.00€ </div>
 `
-panierPosition.insertAdjacentHTML("beforeend", priceHtml)
+panierPosition.insertAdjacentHTML("afterend", priceHtml)
 
 const formHtml = () => {
   const positionForm = document.querySelector('#panier');
+  const form =document.querySelector('#form');
   if (nameStorage === null || nameStorage == 0) {
     const emptybasket = ` 
             <div class="container">
@@ -59,53 +60,18 @@ const formHtml = () => {
             </div>
                             `;
     panierPosition.innerHTML = emptybasket;
+   const tull = document.getElementById('#form').style.display= d-none;
+    panierPosition.innerHTML= tull;
+   
   } else {
-    const structureHtml = ` <form class="col-4 px-5" > 
-      <form>
-        <div class="form-row">
-          <div class="col-md-10 mb-3">
-            <label for="firstname">Prénom </label>
-            <input type="text" class="form-control" id="firstname" placeholder="" value=""  required>  
-            <div id="prenommanquant" class="position-relative bg-info mt-1 rounded" ></div>
-          </div>
-          <div class="col-md-10 mb-3">
-            <label id="userInputLastName" for="lastname">Nom</label> 
-            <input type="text" class="form-control " id="lastname" placeholder="" value="" required>
-            <div id="nommanquant" class="position-relative bg-info mt-1 rounded" ></div>
-          </div>
-          <div class="form-group col-md-10 mb-3">
-            <label id="userInputEmail"  for="email">Email </label>
-            <input type="email" class="form-control " id="email" aria-describedby="emailHelp" required>
-            <div id="emailmanquant" class="position-relative bg-info mt-1 rounded" ></div>
-            <small id="emailHelp" class="form-text text-muted"></small>
-          </div>
-        </div>
-        <div class="form-row ">
-          <div class="col-md-10 mb-3">
-            <label id="userInputAdress"  for="address">Adresse</label>
-            <input type="text" class="form-control " id="address" placeholder="" required>
-            <div id="adressemanquante" class="position-relative bg-info mt-1 rounded" ></div>
-            <div class="col-md mb-3">
-              <label id="userInputZipCode"  for="zipcode">Code Postal</label>
-              <input type="text" class="form-control " id="zipcode" placeholder="" required>
-              <div id="zipmanquant" class="position-relative bg-info mt-1 rounded">
-            </div>
-          </div>
-            <div class="col-md mb-3">
-              <label id="userInputTown" for="city">Ville</label>
-              <input type="text" class="form-control " id="city" placeholder="" required>
-              <div id="villemanquante" class="position-relative bg-info mt-1 rounded">
-            </div>
-          </div>
-        </div>
-        <button id="validation" class="btn  btn-primary"  type="submit">Valider votre commande</button>
-      </form>
-      `;
-    positionForm.insertAdjacentHTML('afterend', structureHtml);
+   
+     //const tull = document.getElementById('#form').style.display= none;
+    //panierPosition.innerHTML=tull;
   }
+
 };
 formHtml();
-
+ 
 const btnSendForm = document.querySelector('#validation');
 btnSendForm.addEventListener('click', (e) => {
   e.preventDefault();
@@ -204,13 +170,17 @@ btnSendForm.addEventListener('click', (e) => {
   const products = []
     nameStorage.forEach(product => {
     products.push(product.id)
+   
   })
+  
   const request = {
     contact: contact,
     products: products,
+    totalPriceCalcul: totalPriceCalcul,
   }
-  let send = JSON.stringify(request);
 
+  let send = JSON.stringify(request);
+console.log(request)
   const options = {
     method: 'POST',
     body: send,
@@ -227,6 +197,7 @@ btnSendForm.addEventListener('click', (e) => {
         localStorage.setItem('order', order)
         console.log(response)
         window.location = window.Location.href = "confirmation.html";
+       
     })
     .catch(function () {
       alert('L\'envoi de la requete est impossible.')
