@@ -6,7 +6,7 @@ function getProductData(productId) {
   return fetch(`http://localhost:3000/api/teddies/${productId}`)
     .then(response => response.json())
     .then(productData => {
-
+      console.log(productId)
       const teddiesElement = document.querySelector('#descrip')
       teddiesElement.innerHTML +=`
                     <div id="cart" class="card">  
@@ -15,11 +15,12 @@ function getProductData(productId) {
                         <div class="col-6">
                           <h3>${productData.name}</h3>
                           <p>${productData.description}</p>
-                          <span="prix"><strong>${productData.price/100}.00€</strong></span>
+                          <strong>${productData.price/100}.00€</strong>
                         </div>                              
                       </div>
                     </div>
                 `
+                
              
       let colors = productData.colors
       const selectElement = document.querySelector('#colors')

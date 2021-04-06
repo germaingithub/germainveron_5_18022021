@@ -13,7 +13,7 @@ const panier_plein = document.querySelector("#panier_plein")
   }else {
     for (i = 0; i < nameStorage.length; i++) {
       panier_plein.innerHTML += `
-                <div class="container">
+                <div class="container ">
                       <th ${nameStorage[i].nameProduct} class="py-2"> ${nameStorage[i].nameProduct} </th>
                       <th> ${nameStorage[i].quantity} </th>
                       <th>${nameStorage[i].priceProduct/100/nameStorage[i].quantity}.00€ </th>
@@ -51,8 +51,7 @@ const priceHtml = `
 panierPosition.insertAdjacentHTML("afterend", priceHtml)
 
 const formHtml = () => {
-  const positionForm = document.querySelector('#panier');
-  const form =document.querySelector('#form');
+  
   if (nameStorage === null || nameStorage == 0) {
     const emptybasket = ` 
             <div class="container">
@@ -60,15 +59,10 @@ const formHtml = () => {
             </div>
                             `;
     panierPosition.innerHTML = emptybasket;
-   const tull = document.getElementById('#form').style.display= d-none;
-    panierPosition.innerHTML= tull;
+    const hideForm = document.getElementById('#form').style.display= d-none;
+    panierPosition.innerHTML= hideForm;
    
-  } else {
-   
-     //const tull = document.getElementById('#form').style.display= none;
-    //panierPosition.innerHTML=tull;
-  }
-
+  } 
 };
 formHtml();
  
@@ -163,9 +157,11 @@ btnSendForm.addEventListener('click', (e) => {
   }
   if (checkFirstName() && checkLastName() && checkCity() && checkZipCode() && checkEmail() && checkAddress()) {
     localStorage.setItem('contact', JSON.stringify(contact))
+    
   } else {
-    alert('Veuillez remplir le formulaires correctement');
+    alert('Veuillez remplir le formulaires correctement')
   }
+
 
   const products = []
     nameStorage.forEach(product => {
