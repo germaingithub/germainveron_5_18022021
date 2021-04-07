@@ -1,18 +1,17 @@
 let nameStorage = JSON.parse(localStorage.getItem('produit'));
-const panierPosition = document.querySelector("#panier") //selection ou je vais injecter le code
+const panierPosition = document.querySelector("#panier")
 const panier_plein = document.querySelector("#panier_plein")
 
-
-  if (nameStorage === null || nameStorage == 0) {
-    const emptybasket = ` 
+if (nameStorage === null || nameStorage == 0) {
+  const emptybasket = ` 
               <div class="container">
                   <div> Votre panier est vide </div>
               </div>
                               `;
-    panierPosition.innerHTML = emptybasket;
-  }else {
-    for (i = 0; i < nameStorage.length; i++) {
-      panier_plein.innerHTML += `
+  panierPosition.innerHTML = emptybasket;
+} else {
+  for (i = 0; i < nameStorage.length; i++) {
+    panier_plein.innerHTML += `
                 <div class="container ">
                       <th ${nameStorage[i].nameProduct} class="py-2"> ${nameStorage[i].nameProduct} </th>
                       <th> ${nameStorage[i].quantity} </th>
@@ -20,9 +19,9 @@ const panier_plein = document.querySelector("#panier_plein")
                       <th>${nameStorage[i].priceProduct/100}.00€<th>        
                     <button class="btn_supprimer">supprimer </button>
                   </div>
-            `
-    }
+                `
   }
+}
 
 let btn_trash = document.querySelectorAll('.btn_supprimer');
 for (let j = 0; j < btn_trash.length; j++) {
@@ -38,20 +37,18 @@ for (let j = 0; j < btn_trash.length; j++) {
   })
 }
 let totalPrice = [];
-  for (let m = 0; m < nameStorage.length; m++) {
-  let priceProductBasket = nameStorage[m].priceProduct / 100 ;
+for (let m = 0; m < nameStorage.length; m++) {
+  let priceProductBasket = nameStorage[m].priceProduct / 100;
   totalPrice.push(priceProductBasket)
 }
 const reducer = (accumulator, currentValue) => accumulator + currentValue
 const totalPriceCalcul = totalPrice.reduce(reducer)
-console.log(totalPriceCalcul)
 const priceHtml = `  
   <div class="py-5 col-2 bg-white"> Total de la commande: ${totalPriceCalcul}.00€ </div>
 `
 panierPosition.insertAdjacentHTML("afterend", priceHtml)
 
 const formHtml = () => {
-  
   if (nameStorage === null || nameStorage == 0) {
     const emptybasket = ` 
             <div class="container">
@@ -59,14 +56,14 @@ const formHtml = () => {
             </div>
                             `;
     panierPosition.innerHTML = emptybasket;
-    const hideForm = document.getElementById('#form').style.display= d-none;
-    panierPosition.innerHTML= hideForm;
-   
-  } 
+    const hideForm = document.getElementById('#form').style.display = d - none;
+    panierPosition.innerHTML = hideForm;
+  }
 };
 formHtml();
- 
+
 const btnSendForm = document.querySelector('#validation');
+
 btnSendForm.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -80,11 +77,10 @@ btnSendForm.addEventListener('click', (e) => {
   const zip = {
     zipCode: document.querySelector('#zipcode').value,
   }
- 
+
   const regExFirstLastNameCity = (value) => {
     return (/^[A-Za-z]{3,20}$/.test(value))
   }
-
   const regExZipCode = (value) => {
     return (/^[0-9]{5}$/.test(value))
   }
@@ -105,6 +101,7 @@ btnSendForm.addEventListener('click', (e) => {
       return false;
     }
   }
+
   function checkLastName() {
     const checkLn = contact.lastname;
     if (regExFirstLastNameCity(checkLn)) {
@@ -115,6 +112,7 @@ btnSendForm.addEventListener('click', (e) => {
       return false;
     }
   }
+
   function checkCity() {
     const checkT = contact.city;
     if (regExFirstLastNameCity(checkT)) {
@@ -125,6 +123,7 @@ btnSendForm.addEventListener('click', (e) => {
       return false;
     }
   }
+
   function checkZipCode() {
     const checkZip = zip.zipCode;
     if (regExZipCode(checkZip)) {
@@ -135,6 +134,7 @@ btnSendForm.addEventListener('click', (e) => {
       return false;
     }
   }
+
   function checkEmail() {
     const checkE = contact.email;
     if (regExEmail(checkE)) {
@@ -145,6 +145,7 @@ btnSendForm.addEventListener('click', (e) => {
       return false;
     }
   }
+
   function checkAddress() {
     const checkA = contact.address;
     if (regExAddress(checkA)) {
@@ -157,18 +158,15 @@ btnSendForm.addEventListener('click', (e) => {
   }
   if (checkFirstName() && checkLastName() && checkCity() && checkZipCode() && checkEmail() && checkAddress()) {
     localStorage.setItem('contact', JSON.stringify(contact))
-    
   } else {
     alert('Veuillez remplir le formulaires correctement')
   }
 
-
   const products = []
-    nameStorage.forEach(product => {
+  nameStorage.forEach(product => {
     products.push(product.id)
-   
   })
-  
+
   const request = {
     contact: contact,
     products: products,
@@ -176,7 +174,7 @@ btnSendForm.addEventListener('click', (e) => {
   }
 
   let send = JSON.stringify(request);
-console.log(request)
+
   const options = {
     method: 'POST',
     body: send,
@@ -185,21 +183,19 @@ console.log(request)
       'Content-Type': 'application/json'
     }
   }
-
+  //envoi au serveur
   fetch('http://localhost:3000/api/teddies/order', options)
     .then(response => response.json())
     .then(response => {
       let order = JSON.stringify(response)
-        localStorage.setItem('order', order)
-        console.log(response)
-        window.location = window.Location.href = "confirmation.html";
-       
+      localStorage.setItem('order', order)
+      window.location = window.Location.href = "confirmation.html";
     })
     .catch(function () {
       alert('L\'envoi de la requete est impossible.')
       console.log(dataLocalStorage)
     })
 });
-//enregisstrement donnees dans forumulaure
+//enregisstrement donnees dans forumulaire
 const dataLocalStorage = localStorage.getItem('contact');
 const dataLocalStorageObj = JSON.parse(dataLocalStorage)
