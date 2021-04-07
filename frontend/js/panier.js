@@ -1,6 +1,6 @@
 let nameStorage = JSON.parse(localStorage.getItem('produit'));
 const panierPosition = document.querySelector("#panier")
-const panier_plein = document.querySelector("#panier_plein")
+const panierPlein = document.querySelector("#panier_plein")
 
 if (nameStorage === null || nameStorage == 0) {
   const emptybasket = ` 
@@ -11,7 +11,7 @@ if (nameStorage === null || nameStorage == 0) {
   panierPosition.innerHTML = emptybasket;
 } else {
   for (i = 0; i < nameStorage.length; i++) {
-    panier_plein.innerHTML += `
+    panierPlein.innerHTML += `
                 <div class="container ">
                       <th ${nameStorage[i].nameProduct} class="py-2"> ${nameStorage[i].nameProduct} </th>
                       <th> ${nameStorage[i].quantity} </th>
@@ -36,6 +36,7 @@ for (let j = 0; j < btn_trash.length; j++) {
     window.location.href = "panier.html";
   })
 }
+
 let totalPrice = [];
 for (let m = 0; m < nameStorage.length; m++) {
   let priceProductBasket = nameStorage[m].priceProduct / 100;
