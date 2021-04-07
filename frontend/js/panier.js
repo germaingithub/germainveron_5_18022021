@@ -45,7 +45,7 @@ for (let m = 0; m < nameStorage.length; m++) {
 const reducer = (accumulator, currentValue) => accumulator + currentValue
 const totalPriceCalcul = totalPrice.reduce(reducer)
 const priceHtml = `  
-  <div class="py-5 col-2 bg-white"> Total de la commande: ${totalPriceCalcul}.00€ </div>
+  <div class="py-5 col-2 bg-white mb-5"> Total de la commande: ${totalPriceCalcul}.00€ </div>
 `
 panierPosition.insertAdjacentHTML("afterend", priceHtml)
 

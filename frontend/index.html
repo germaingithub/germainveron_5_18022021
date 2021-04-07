@@ -19,7 +19,7 @@
     <script src="js/index.js" defer></script>
 </head>
 <body>
-    <div class="container ">
+    <div class="container  ">
         <header>
             <nav class="navbar navbar-expand-lg navbar-light  bg-primary ">
                 <a href="index.html"> <img class="logo flex flex-col" src="images/logo.png" height="90" alt="Logo Orinoco"> </a>     
@@ -53,13 +53,12 @@
         <section id="liste_ours" class="container-fluid w-full gap-4  ">
             <h2>Adopte-moi</h2>
         </section>
-
-        <main id="main">
-            <div class="cols-6 container-fluid d-flex flex-wrap flex-row">
-                <template id="templateProduct">
-                    <a id="link" href="" class="text-decoration-none text-reset">
-                        <div class="card col-6-lg bg-light gap-4 p-3 mb-3 col-lg-4 ">
-                            <img id="image" src="" width="280" height="250" alt="" />
+</div>
+        <main id="main" class=" d-flex  flex-row container-fluid w-full d-flex flex-wrap">
+                <template id="templateProduct" >
+                    <a id="link" href="" class="text-decoration-none text-reset card bg-light gap-12 col-4 p-3 mb-3 mr-6 d-flex flex-wrap">
+                        <div>
+                            <img id="image" class="container-fluid w-full" src="" width="280" height="250" alt="" />
                             <div class="text-decoration-none">
                                 <h3 class="text-decoration-none" id="name"></h3>
                                 <p class="text-decoration-none" id="description"></p>
@@ -68,9 +67,8 @@
                         </div>
                     </a>
                 </template>
-            </div>
         </main>
-    </div>
+    
 
     <footer class="foot bg-primary">
         <div class="footer">Orinoco</div>
