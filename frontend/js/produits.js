@@ -3,7 +3,7 @@ const productId = urlParams.get("given_id")
 const productData = getProductData(productId)
 
 function getProductData(productId) {
-  return fetch(`http://localhost:3000/api/teddies/${productId}`)
+  return fetch(`https://ab-p5-api.herokuapp.com/api/teddies/${productId}`)
     .then(response => response.json())
     .then(productData => {
 
@@ -41,6 +41,7 @@ function getProductData(productId) {
       const buttonAddToLocalStorage = document.getElementById('addToBasket');
 
       buttonAddToLocalStorage.addEventListener('click', (event) => {
+        event.preventDefault();
         const choixQte = positionQuantite.value;
 
         let nameStorage = localStorage.getItem('produit');
@@ -57,11 +58,19 @@ function getProductData(productId) {
             quantity: choixQte,
           });
         }
-        addProductToLocalStorage()
+        //addProductToLocalStorage()
+        
+        const monProduit = {
+           id: productData._id,
+            nameProduct: productData.name,
+            priceProduct: (productData.price * choixQte),
+            quantity: choixQte,
+        }
 
-        localStorage.setItem('produit', JSON.stringify(tedProduct));
+          addProductToLocalSrage(monProduit)
+        //localStorage.setItem('produit', JSON.stringify(tedProduct));
         alert('L\'article a bien été ajouté à votre panier.');
-        event.preventDefault();
+        
       })
     })
 };
@@ -78,5 +87,6 @@ const addProductToLocalSrage = (product) => {
     } else {
       products.push(product)
     }
+    localStorage.setItem('products',JSON.stringify(products))
   }
 }

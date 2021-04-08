@@ -1,4 +1,4 @@
-let nameStorage = JSON.parse(localStorage.getItem('produit'));
+let nameStorage = JSON.parse(localStorage.getItem('products'));
 const panierPosition = document.querySelector("#panier")
 const panierPlein = document.querySelector("#panier_plein")
 
@@ -15,8 +15,8 @@ if (nameStorage === null || nameStorage == 0) {
                 <div class="container ">
                       <th ${nameStorage[i].nameProduct} class="py-2"> ${nameStorage[i].nameProduct} </th>
                       <th> ${nameStorage[i].quantity} </th>
-                      <th>${nameStorage[i].priceProduct/100/nameStorage[i].quantity}.00€ </th>
-                      <th>${nameStorage[i].priceProduct/100}.00€<th>        
+                      <th>${nameStorage[i].priceProduct/100} </th>
+                      <th>${nameStorage[i].priceProduct/100*nameStorage[i].quantity}<th>        
                     <button class="btn_supprimer">supprimer </button>
                   </div>
                 `
@@ -39,13 +39,16 @@ for (let j = 0; j < btn_trash.length; j++) {
 
 let totalPrice = [];
 for (let m = 0; m < nameStorage.length; m++) {
-  let priceProductBasket = nameStorage[m].priceProduct / 100;
+  let priceProductBasket = nameStorage[m].priceProduct / 100*nameStorage[m].quantity;
   totalPrice.push(priceProductBasket)
 }
+
 const reducer = (accumulator, currentValue) => accumulator + currentValue
+
 const totalPriceCalcul = totalPrice.reduce(reducer)
+
 const priceHtml = `  
-  <div class="py-5 col-2 bg-white mb-5"> Total de la commande: ${totalPriceCalcul}.00€ </div>
+  <div class="py-5 col-2 bg-white mb-3"> Total de la commande: ${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalPriceCalcul)} </div>
 `
 panierPosition.insertAdjacentHTML("afterend", priceHtml)
 
@@ -159,10 +162,13 @@ btnSendForm.addEventListener('click', (e) => {
   }
   if (checkFirstName() && checkLastName() && checkCity() && checkZipCode() && checkEmail() && checkAddress()) {
     localStorage.setItem('contact', JSON.stringify(contact))
+  
   } else {
     alert('Veuillez remplir le formulaires correctement')
   }
 
+  
+ 
   const products = []
   nameStorage.forEach(product => {
     products.push(product.id)
@@ -185,7 +191,7 @@ btnSendForm.addEventListener('click', (e) => {
     }
   }
   //envoi au serveur
-  fetch('http://localhost:3000/api/teddies/order', options)
+  fetch('https://ab-p5-api.herokuapp.com/api/teddies/order', options)
     .then(response => response.json())
     .then(response => {
       let order = JSON.stringify(response)
@@ -197,6 +203,6 @@ btnSendForm.addEventListener('click', (e) => {
       console.log(dataLocalStorage)
     })
 });
-//enregisstrement donnees dans forumulaire
+//enregistrement donnees dans forumulaire
 const dataLocalStorage = localStorage.getItem('contact');
 const dataLocalStorageObj = JSON.parse(dataLocalStorage)
