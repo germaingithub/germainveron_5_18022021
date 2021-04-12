@@ -6,7 +6,7 @@
 })()
 // récupération des données de l'API
 function getProduc() {
-   return fetch("https://ab-p5-api.herokuapp.com/api/teddies")
+   return fetch("http://localhost:3000/api/teddies/")
    .then (httpBodyResponse =>{
        return httpBodyResponse.json()
    })

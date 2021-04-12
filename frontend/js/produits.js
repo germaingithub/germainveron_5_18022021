@@ -3,7 +3,7 @@ const productId = urlParams.get("given_id")
 const productData = getProductData(productId)
 
 function getProductData(productId) {
-  return fetch(`https://ab-p5-api.herokuapp.com/api/teddies/${productId}`)
+  return fetch(`http://localhost:3000/api/teddies/${productId}`)
     .then(response => response.json())
     .then(productData => {
 
@@ -44,49 +44,30 @@ function getProductData(productId) {
         event.preventDefault();
         const choixQte = positionQuantite.value;
 
-        let nameStorage = localStorage.getItem('produit');
-        let tedProduct = JSON.parse(nameStorage);
-
-        function addProductToLocalStorage() {
-          if (nameStorage === null) {
-            tedProduct = [];
-          }
-          tedProduct.push({
-            id: productData._id,
-            nameProduct: productData.name,
-            priceProduct: (productData.price * choixQte),
-            quantity: choixQte,
-          });
+      const addProductToLocalStorage = (product) => {
+      if (!localStorage.getItem('products')) {
+        localStorage.setItem('products', JSON.stringify([product]))
+      } else {
+        const products = JSON.parse(localStorage.getItem('products'))
+        const productAlreadySelected = products.filter(prod => prod.id === product.id)
+        if (productAlreadySelected.length > 0) {
+          productAlreadySelected[0].quantity++
+        } else {
+          products.push(product)
         }
-        //addProductToLocalStorage()
-        
+        localStorage.setItem('products',JSON.stringify(products))
+      }
+      }
         const monProduit = {
            id: productData._id,
             nameProduct: productData.name,
-            priceProduct: (productData.price * choixQte),
+            priceProduct: productData.price,
             quantity: choixQte,
         }
-
-          addProductToLocalSrage(monProduit)
+          addProductToLocalStorage(monProduit)
         //localStorage.setItem('produit', JSON.stringify(tedProduct));
         alert('L\'article a bien été ajouté à votre panier.');
         
       })
     })
 };
-
-const addProductToLocalSrage = (product) => {
-  if (!localStorage.getItem('products')) {
-    localStorage.setItem('products', JSON.stringify([product]))
-  } else {
-    const products = JSON.parse(localStorage.getItem('products'))
-    const productAlreadySelected = products.filter(prod => prod.id === product.id)
-
-    if (productAlreadySelected.length > 0) {
-      productAlreadySelected[0].quantity++
-    } else {
-      products.push(product)
-    }
-    localStorage.setItem('products',JSON.stringify(products))
-  }
-}

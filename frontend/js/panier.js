@@ -31,7 +31,7 @@ for (let j = 0; j < btn_trash.length; j++) {
     nameStorage = nameStorage.filter(
       (el) => el.nameProduct !== nameProductDelete
     );
-    localStorage.setItem('produit', JSON.stringify(nameStorage));
+    localStorage.setItem('products', JSON.stringify(nameStorage));
     alert("Ce produit a été supprimé");
     window.location.href = "panier.html";
   })
@@ -65,12 +65,97 @@ const formHtml = () => {
   }
 };
 formHtml();
+//check form
+let firstName = document.getElementById('firstname')
+let lastName = document.getElementById('lastname')
+let email = document.getElementById('email')
+let address = document.getElementById('address')
+let city = document.getElementById('city')
+let btnOrder = document.getElementById("validationForm")
 
-const btnSendForm = document.querySelector('#validation');
+let firstNameOk = ""
+let lastNameOk = ""
+let emailOk = ""
+let addressOk = ""
+let cityOk = ""
 
-btnSendForm.addEventListener('click', (e) => {
+let lettersNumbersRg = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]+$/
+let lettersRg = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/
+let emailRg = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
+
+function validation (regex, el) {
+	let regexOk = regex.test(el);
+	if (regexOk){
+		return true
+	}else{
+		return false
+	}
+}
+
+function disable(){
+	btnOrder.removeAttribute("disabled")
+	if (!firstNameOk || !lastNameOk || !emailOk || !addressOk || !cityOk) {
+		btnOrder.setAttribute("disabled", "disabled")
+ 	}
+}
+
+function message(message, eltValid){
+	if (eltValid != true && message) {
+		alert(message)
+	}
+}
+
+function validationStatus(inputElt, regex){
+	let eltValue = inputElt.value
+	return validation(regex, eltValue)
+}
+
+firstNameOk = validationStatus(firstName, lettersRg)
+lastNameOk = validationStatus(lastName, lettersRg)
+emailOk = validationStatus(email, emailRg)
+addressOk = validationStatus(address, lettersNumbersRg)
+cityOk = validationStatus(city, lettersNumbersRg)
+disable()
+
+firstName.addEventListener('change', (event) =>{
+	let inputValue = event.target.value
+	firstNameOk = validation(lettersRg, inputValue)
+	disable()
+	message("Chiffre et symbole ne sont pas admis.", firstNameOk)
+})
+
+lastName.addEventListener('change', (event) =>{
+	let inputValue = event.target.value
+	lastNameOk = validation(lettersRg, inputValue)
+	disable()
+	message("Chiffre et symbole ne sont pas admis.", lastNameOk)
+})
+
+email.addEventListener('change', (event) =>{
+	let inputValue = event.target.value
+	emailOk = validation(emailRg, inputValue)
+	disable()
+	message("Votre email n\' est pas valide.", emailOk)
+})
+
+address.addEventListener('change', (event) =>{
+	let inputValue = event.target.value
+	addressOk = validation(lettersNumbersRg, inputValue)
+	disable()
+	message("L\'adresse ne doit contenir que des lettres et / ou chiffres sans ponctuation. ", addressOk)
+})
+
+city.addEventListener('change', (event) =>{
+	let inputValue = event.target.value
+	cityOk = validation(lettersNumbersRg, inputValue)
+	disable()
+	message("Chiffre et symbole ne sont pas admis.", cityOk)
+})
+
+const btnSendForm = document.querySelector('#form');
+btnSendForm.addEventListener('submit', (e) => {
   e.preventDefault();
-
+  
   const contact = {
     firstName: document.querySelector('#firstname').value,
     lastName: document.querySelector('#lastname').value,
@@ -78,106 +163,15 @@ btnSendForm.addEventListener('click', (e) => {
     city: document.querySelector('#city').value,
     email: document.querySelector('#email').value,
   }
-  const zip = {
-    zipCode: document.querySelector('#zipcode').value,
-  }
 
-  const regExFirstLastNameCity = (value) => {
-    return (/^[A-Za-z]{3,20}$/.test(value))
-  }
-  const regExZipCode = (value) => {
-    return (/^[0-9]{5}$/.test(value))
-  }
-  const regExEmail = (value) => {
-    return (/^[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}$/.test(value));
-  }
-  const regExAddress = (value) => {
-    return (/^[0-9a-zA-Z \s]{5,50}$/.test(value))
-  }
-
-  function checkFirstName() {
-    const checkFn = contact.firstname;
-    if (regExFirstLastNameCity(checkFn)) {
-      document.querySelector('#prenommanquant').textContent = '';
-      return true;
-    } else {
-      document.querySelector('#prenommanquant').textContent = 'Chiffre et symbole ne sont pas admis. Entre 3 et 20 caracteres.';
-      return false;
-    }
-  }
-
-  function checkLastName() {
-    const checkLn = contact.lastname;
-    if (regExFirstLastNameCity(checkLn)) {
-      document.querySelector('#nommanquant').textContent = '';
-      return true;
-    } else {
-      document.querySelector('#nommanquant').textContent = 'Chiffre et symbole ne sont pas admis. Entre 3 et 20 caracteres.';
-      return false;
-    }
-  }
-
-  function checkCity() {
-    const checkT = contact.city;
-    if (regExFirstLastNameCity(checkT)) {
-      document.querySelector('#villemanquante').textContent = '';
-      return true;
-    } else {
-      document.querySelector('#villemanquante').textContent = 'Chiffre et symbole ne sont pas admis. Entre 3 et 20 caractères.';
-      return false;
-    }
-  }
-
-  function checkZipCode() {
-    const checkZip = zip.zipCode;
-    if (regExZipCode(checkZip)) {
-      document.querySelector('#zipmanquant').textContent = '';
-      return true;
-    } else {
-      document.querySelector('#zipmanquant').textContent = 'Seulement 5 chiffres autorisés.';
-      return false;
-    }
-  }
-
-  function checkEmail() {
-    const checkE = contact.email;
-    if (regExEmail(checkE)) {
-      document.querySelector('#emailmanquant').textContent = '';
-      return true;
-    } else {
-      document.querySelector('#emailmanquant').textContent = 'Votre email n\'est pas valide.';
-      return false;
-    }
-  }
-
-  function checkAddress() {
-    const checkA = contact.address;
-    if (regExAddress(checkA)) {
-      document.querySelector('#adressemanquante').textContent = '';
-      return true;
-    } else {
-      document.querySelector('#adressemanquante').textContent = ('L\'adresse ne doit contenir que des les lettres et/ou chiffres sans punctuation.');
-      return false;
-    }
-  }
-  if (checkFirstName() && checkLastName() && checkCity() && checkZipCode() && checkEmail() && checkAddress()) {
-    localStorage.setItem('contact', JSON.stringify(contact))
-  
-  } else {
-    alert('Veuillez remplir le formulaires correctement')
-  }
-
-  
- 
   const products = []
-  nameStorage.forEach(product => {
+    nameStorage.forEach(product => {
     products.push(product.id)
   })
 
   const request = {
     contact: contact,
     products: products,
-    totalPriceCalcul: totalPriceCalcul,
   }
 
   let send = JSON.stringify(request);
@@ -191,18 +185,17 @@ btnSendForm.addEventListener('click', (e) => {
     }
   }
   //envoi au serveur
-  fetch('https://ab-p5-api.herokuapp.com/api/teddies/order', options)
+  fetch('http://localhost:3000/api/teddies/order', options)
     .then(response => response.json())
     .then(response => {
       let order = JSON.stringify(response)
       localStorage.setItem('order', order)
       window.location = window.Location.href = "confirmation.html";
     })
-    .catch(function () {
+    .catch(()=> {
       alert('L\'envoi de la requete est impossible.')
-      console.log(dataLocalStorage)
     })
 });
-//enregistrement donnees dans forumulaire
+//enregistrement données dans formulaire
 const dataLocalStorage = localStorage.getItem('contact');
 const dataLocalStorageObj = JSON.parse(dataLocalStorage)

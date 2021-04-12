@@ -5,7 +5,8 @@ const contact = order.contact
 const products = produit
 const idOrder = order.orderId
 
-const total = order.totalPriceCalcul          
+const total = order.totalPriceCalcul    
+console.log(order);      
 let totalConf = [];
   for (let p = 0; p < products.length; p++) {
   let pBasket = products[p].priceProduct / 100 * products[p].quantity ;
@@ -19,3 +20,4 @@ const totalPriceC = totalConf.reduce(reduc)
       <p class="text-center text-xl font-weight-bold mb-4 fs-2">Voici votre numéro de commande: ${order.orderId}</p>
       <p class="text-center text-xl font-weight-bold mb-4 fs-2">Le montant total de votre commande est de :${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalPriceC)}</p>`
 
+      localStorage.clear()
