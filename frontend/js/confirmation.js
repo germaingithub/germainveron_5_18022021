@@ -6,13 +6,13 @@ const products = produit
 const idOrder = order.orderId
 
 const total = order.totalPriceCalcul    
-console.log(order);      
+    
 let totalConf = [];
   for (let p = 0; p < products.length; p++) {
   let pBasket = products[p].priceProduct / 100 * products[p].quantity ;
   totalConf.push(pBasket)
 }
-
+//récapitulatif du montant total de la commande + numero de commande + nom client
 const reduc = (accumulator, currentValue) => accumulator + currentValue
 const totalPriceC = totalConf.reduce(reduc)
 

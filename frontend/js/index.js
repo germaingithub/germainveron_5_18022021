@@ -1,24 +1,24 @@
 (async() =>{
-    const producs = await getProduc()
+    const producs = await getProduct()
     for(produc of producs) {
-        displayProduc(produc)
+        displayProduct(produc)
     }
 })()
 // récupération des données de l'API
-function getProduc() {
+function getProduct() {
    return fetch("http://localhost:3000/api/teddies/")
    .then (httpBodyResponse =>{
        return httpBodyResponse.json()
    })
    .then(producs =>{
        return producs
+       
    })
    .catch(error =>{
        alert(error)
    })
 }
-
-function displayProduc(productData){
+function displayProduct(productData){
     const templateElt = document.getElementById('templateProduct')
     const cloneElt = document.importNode(templateElt.content, true)
 

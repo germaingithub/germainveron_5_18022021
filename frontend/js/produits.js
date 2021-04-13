@@ -1,12 +1,12 @@
 const urlParams = new URLSearchParams(window.location.search)
 const productId = urlParams.get("given_id")
 const productData = getProductData(productId)
-
+//récupération des données par productID
 function getProductData(productId) {
   return fetch(`http://localhost:3000/api/teddies/${productId}`)
     .then(response => response.json())
     .then(productData => {
-
+console.log(productData);
       const teddiesElement = document.querySelector('#descrip')
       teddiesElement.innerHTML += `
                     <div id="cart" class="card">  
@@ -34,7 +34,7 @@ function getProductData(productId) {
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
-      `
+        `
       const positionQuantite = document.querySelector('#selectQte');
       positionQuantite.innerHTML = structureQuantite;
 
@@ -44,30 +44,28 @@ function getProductData(productId) {
         event.preventDefault();
         const choixQte = positionQuantite.value;
 
-      const addProductToLocalStorage = (product) => {
-      if (!localStorage.getItem('products')) {
-        localStorage.setItem('products', JSON.stringify([product]))
-      } else {
-        const products = JSON.parse(localStorage.getItem('products'))
-        const productAlreadySelected = products.filter(prod => prod.id === product.id)
-        if (productAlreadySelected.length > 0) {
-          productAlreadySelected[0].quantity++
-        } else {
-          products.push(product)
+        const addProductToLocalStorage = (product) => {
+          if (!localStorage.getItem('products')) {
+            localStorage.setItem('products', JSON.stringify([product]))
+          } else {
+            const products = JSON.parse(localStorage.getItem('products'))
+            const productAlreadySelected = products.filter(prod => prod.id === product.id)
+            if (productAlreadySelected.length > 0) {
+              productAlreadySelected[0].quantity++
+            } else {
+              products.push(product)
+            }
+            localStorage.setItem('products', JSON.stringify(products))
+          }
         }
-        localStorage.setItem('products',JSON.stringify(products))
-      }
-      }
-        const monProduit = {
-           id: productData._id,
-            nameProduct: productData.name,
-            priceProduct: productData.price,
-            quantity: choixQte,
+        const myProduct = {
+          id: productData._id,
+          nameProduct: productData.name,
+          priceProduct: productData.price,
+          quantity: choixQte,
         }
-          addProductToLocalStorage(monProduit)
-        //localStorage.setItem('produit', JSON.stringify(tedProduct));
+        addProductToLocalStorage(myProduct)
         alert('L\'article a bien été ajouté à votre panier.');
-        
       })
     })
 };

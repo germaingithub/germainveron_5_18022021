@@ -42,9 +42,7 @@ for (let m = 0; m < nameStorage.length; m++) {
   let priceProductBasket = nameStorage[m].priceProduct / 100*nameStorage[m].quantity;
   totalPrice.push(priceProductBasket)
 }
-
 const reducer = (accumulator, currentValue) => accumulator + currentValue
-
 const totalPriceCalcul = totalPrice.reduce(reducer)
 
 const priceHtml = `  
@@ -79,9 +77,9 @@ let emailOk = ""
 let addressOk = ""
 let cityOk = ""
 
-let lettersNumbersRg = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]+$/
-let lettersRg = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/
-let emailRg = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
+let regexNumbersLetters = /^[-'a-zA-Z0-9À-ÖØ-öø-ÿ\s]+$/
+let regexLetters = /^[-'a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/
+let regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
 
 function validation (regex, el) {
 	let regexOk = regex.test(el);
@@ -105,49 +103,49 @@ function message(message, eltValid){
 	}
 }
 
-function validationStatus(inputElt, regex){
-	let eltValue = inputElt.value
-	return validation(regex, eltValue)
+function validationElement(inputEl, regex){
+	let elValue = inputEl.value
+	return validation(regex, elValue)
 }
 
-firstNameOk = validationStatus(firstName, lettersRg)
-lastNameOk = validationStatus(lastName, lettersRg)
-emailOk = validationStatus(email, emailRg)
-addressOk = validationStatus(address, lettersNumbersRg)
-cityOk = validationStatus(city, lettersNumbersRg)
+firstNameOk = validationElement(firstName, regexLetters)
+lastNameOk = validationElement(lastName, regexLetters)
+emailOk = validationElement(email, regexEmail)
+addressOk = validationElement(address, regexNumbersLetters)
+cityOk = validationElement(city, regexNumbersLetters)
 disable()
 
 firstName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	firstNameOk = validation(lettersRg, inputValue)
+	firstNameOk = validation(regexLetters, inputValue)
 	disable()
 	message("Chiffre et symbole ne sont pas admis.", firstNameOk)
 })
 
 lastName.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	lastNameOk = validation(lettersRg, inputValue)
+	lastNameOk = validation(regexLetters, inputValue)
 	disable()
 	message("Chiffre et symbole ne sont pas admis.", lastNameOk)
 })
 
 email.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	emailOk = validation(emailRg, inputValue)
+	emailOk = validation(regexEmail, inputValue)
 	disable()
 	message("Votre email n\' est pas valide.", emailOk)
 })
 
 address.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	addressOk = validation(lettersNumbersRg, inputValue)
+	addressOk = validation(regexNumbersLetters, inputValue)
 	disable()
 	message("L\'adresse ne doit contenir que des lettres et / ou chiffres sans ponctuation. ", addressOk)
 })
 
 city.addEventListener('change', (event) =>{
 	let inputValue = event.target.value
-	cityOk = validation(lettersNumbersRg, inputValue)
+	cityOk = validation(regexNumbersLetters, inputValue)
 	disable()
 	message("Chiffre et symbole ne sont pas admis.", cityOk)
 })
