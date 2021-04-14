@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="fr">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Orinoco</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Shrikhand&ampdisplay=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -22,52 +21,40 @@
 
 <body>
   <header>
-
-
     <nav class="navbar navbar-expand-lg navbar-light  bg-primary ">
       <a href="index.html"> <img class="logo flex flex-col" src="images/logo.png" height="90" alt="Logo Orinoco"> </a>
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"></a>
+        <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="panier.html">Panier
-                <span id="articleNumber"></span></a>
+              <a class="nav-link" href="panier.html">Panier</a>
             </li>
           </ul>
-
         </div>
       </div>
     </nav>
   </header>
 
-
-
-  <section class=" bg-primary row mt-5 px-5">
-    <div class="row  mt-5 panierClient">
+  <section class=" bg-primary row mt-5 px-5 ">
+    <div class="  mt-5 panierClient ">
       <h2>Votre panier</h2>
       <p></p>
       <p id="emptybasket"></p>
-
-
-      <div class="h-500"></div>
     </div>
 
-
-
-    <div class="row" id="panier">
-      <table class="col-7 border-collapse bg-primary rounded">
-        <h3>Récapulatif de votre commande</h3>
-
+    <div class="container-fluid w-full text-center " id="panier">
+      <h3>Récapulatif de votre commande</h3>
+      <table class="col-12 col-xl-6 border-collapse bg-primary rounded container-fluid w-full">
         <thead>
-          <tr class="border bg-white h-25">
+          <tr class="border bg-white h-25  ">
             <th class="py-2">Produit</th>
             <th>Quantité</th>
             <th>Prix</th>
@@ -75,52 +62,47 @@
             <th>Vider panier</th>
           </tr>
         </thead>
-        <tbody id="panier_plein" class="border bg-white">
-
-        </tbody>
-
-
+        <tbody id="panier_plein" class="border bg-white"></tbody>
       </table>
-      <form class="col-4 px-5 " id="form">
+
+      <div id="totalinner" class="container-fluid w-full py-3 col-10 col-xl-6 bg-white mb-3"></div>
+
+      <form class="  pb-4  container-fluid w-full col-12 mt-5 mb-4 col-xl-6" id="form">
         <div class="form-row">
-          <div class="form-group col-md-10 mb-3">
+          <div class="form-group mb-3">
             <label for="firstname">Prénom </label>
             <input type="text" class="form-control" id="firstname" placeholder="" value="" required>
           </div>
 
-          <div class="form-group col-md-10 mb-3">
+          <div class="form-group mb-3">
             <label id="userInputLastName" for="lastname">Nom</label>
             <input type="text" class="form-control " id="lastname" placeholder="" value="" required>
           </div>
 
-          <div class="form-group col-md-10 mb-3">
+          <div class="form-group mb-3">
             <label id="userInputEmail" for="email">Email</label>
-            <input type="email" class="form-control " id="email" aria-describedby="emailHelp" required>
+            <input type="email" class="form-control " id="email" required>
           </div>
         </div>
 
         <div class="form-row ">
-          <div class="form-group col-md-10 mb-3">
+          <div class="form-group mb-3">
             <label id="userInputAdress" for="address">Adresse</label>
             <input type="text" class="form-control " id="address" placeholder="" required>
-            
-            <div class="form-group col-md mb-3">
+
+            <div class="form-group mb-3">
               <label id="userInputZipCode" for="zipcode">Code Postal</label>
               <input type="text" class="form-control " id="zipcode" placeholder="" required>
             </div>
 
-            <div class="form-group col-md mb-3 position-relative  mt-1 rounded">
+            <div class="form-group col-md mb-3  mt-1 rounded">
               <label id="userInputTown" for="city">Ville</label>
               <input type="text" class="form-control " id="city" placeholder="" required>
             </div>
           </div>
         </div>
-        <input id="validationForm" type="submit" class="col-md-10" value="Valider ma commande" disabled="disabled">
+        <input id="validationForm" type="submit" class="col-8 col-md-8 " value="Valider ma commande" disabled="disabled">
       </form>
     </div>
-
-
   </section>
-
-
 </body>

@@ -17,44 +17,38 @@
   <meta name="msapplication-TileImage" content="/frontend/images/favicon-96x96.png">
   <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/14d0bd0a6a.js" crossorigin="anonymous"></script>
-
   <script src="js/confirmation.js" defer></script>
 </head>
 
+<header>
 
-  <header>
+  <nav class="navbar navbar-expand-lg navbar-light  bg-primary ">
+    <a href="index.html"> <img class="logo flex flex-col" src="images/logo.png" height="90" alt="Logo Orinoco"> </a>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="panier.html">Panier
+              <span id="articleNumber"></span></a>
+          </li>
+        </ul>
 
-
-    <nav class="navbar navbar-expand-lg navbar-light  bg-primary ">
-      <a href="index.html"> <img class="logo flex flex-col" src="images/logo.png" height="90" alt="Logo Orinoco"> </a>
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="panier.html">Panier
-                <span id="articleNumber"></span></a>
-            </li>
-          </ul>
-          
-        </div>
       </div>
-    </nav>
-  </header>
-  
+    </div>
+  </nav>
+</header>
 
-
-<main class="bg-info my-4 py-16 flex justify-center flex-col">
-      <div id="numCde"></div>
-      <div id="purchase" ></div>
-      <div class="text-center text-4xl font-weight-bold mb-4 fs-2" id="totalPrice" ></div>
-      <a class="center text-white fs-3" href="index.html">Retour à l'accueil</a>
-    </main>
-
+<main class="bg-info my-4 py-16 flex justify-center flex-col ml-5">
+  <div id="numCde"></div>
+  <div id="purchase"></div>
+  <div class="text-center text-4xl font-weight-bold mb-4 fs-2" id="totalPrice"></div>
+  <div class="text-center pb-2"> <a class="text-center text-white fs-3" href="index.html">Retour à l'accueil</a></div>
+</main>
