@@ -22,7 +22,7 @@ function getProduct() {
 function displayProduct(productData) {
   const templateElt = document.getElementById("templateProduct");
   const cloneElt = document.importNode(templateElt.content, true);
-
+ 
   cloneElt.getElementById("name").textContent = productData.name;
   cloneElt.getElementById("description").textContent = productData.description;
   cloneElt.getElementById("price").textContent = productData.price / 100;

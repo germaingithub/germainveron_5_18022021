@@ -7,13 +7,12 @@ function getProductData(productId) {
   return fetch(`http://localhost:3000/api/teddies/${productId}`)
     .then((response) => response.json())
     .then((productData) => {
+      console.log(productData);
       const teddiesElement = document.querySelector("#descrip");
       teddiesElement.innerHTML += `
                     <div id="cart" class="card">  
                       <div class="row">
-                        <img src="${
-                          productData.imageUrl
-                        }"  class="img-fluid col-6" alt="teddy_2" width="300" height="250">
+                        <img src="${productData.imageUrl}"  class="img-fluid col-6" alt="teddy_2" width="300" height="250">
                         <div class="col-6">
                           <h3>${productData.name}</h3>
                           <p>${productData.description}</p>
@@ -42,8 +41,8 @@ function getProductData(productId) {
 
       const buttonAddToLocalStorage = document.getElementById("addToBasket");
 
-      buttonAddToLocalStorage.addEventListener("click", (event) => {
-        event.preventDefault();
+      buttonAddToLocalStorage.addEventListener("click", () => {
+
         const choixQte = positionQuantite.value;
 
         const addProductToLocalStorage = (product) => {
@@ -55,7 +54,7 @@ function getProductData(productId) {
               (prod) => prod.id === product.id
             );
             if (productAlreadySelected.length > 0) {
-              productAlreadySelected[0].quantity++;
+              productAlreadySelected[0].myProduct.quantity++;
             } else {
               products.push(product);
             }
